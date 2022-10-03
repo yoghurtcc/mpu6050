@@ -1,0 +1,1 @@
+f103c6t6_example\startup_stm32f103x6.o: startup_stm32f103x6.s
