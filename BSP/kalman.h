@@ -7,6 +7,7 @@
 void Angle_Cal(void);
 void Kalman_Cal_Pitch(float acc,float gyro);
 void Kalman_Cal_Roll(float acc,float gyro);
+void Kalman_Cal_Yaw(float acc,float gyro);
 	
 //卡尔曼解算法库
 extern short aacx,aacy,aacz;		//加速度传感器原始数据 

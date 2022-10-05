@@ -30,3 +30,8 @@ f103c6t6_example\mpu6050.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_ua
 f103c6t6_example\mpu6050.o: ..\BSP\mpu6050.h
 f103c6t6_example\mpu6050.o: ..\BSP\IIC.h
 f103c6t6_example\mpu6050.o: D:\code tools\MDK5\ARM\ARMCC\Bin\..\include\inttypes.h
+f103c6t6_example\mpu6050.o: ..\BSP\inv_mpu.h
+f103c6t6_example\mpu6050.o: ..\BSP\inv_mpu_dmp_motion_driver.h
+f103c6t6_example\mpu6050.o: ..\BSP\kalman.h
+f103c6t6_example\mpu6050.o: ../Core/Inc/main.h
+f103c6t6_example\mpu6050.o: D:\code tools\MDK5\ARM\ARMCC\Bin\..\include\math.h

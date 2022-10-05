@@ -1,6 +1,7 @@
 #include "kalman.h"
 #include "mpu6050.h"
-
+#include "inv_mpu.h"
+#include "inv_mpu_dmp_motion_driver.h"
 //卡尔曼解算法库
 
 short aacx,aacy,aacz;		//加速度传感器原始数据 
@@ -31,13 +32,13 @@ int8_t g_ret;
 void Angle_Cal(void)
 {
 	//1. 原始数据获取
-	float accx,accy,accz;//三方向角加速度值
+//	float accx,accy,accz,acctemp;//三方向角加速度值
 	//获取温度
 	temp_ret=MPU_Get_Temperature();						//得到温度信息
 	//获取加速度传感器数据			
-  a_ret =  MPU_Get_Accelerometer(&aacx,&aacy, &aacz);	;
-  //获得陀螺仪数据
-  g_ret=MPU_Get_Gyroscope(&gyrox, &gyroy, &gyroz);		//得到陀螺仪数据
+  a_ret =  MPU_Get_Accelerometer(&ax,&ay, &az);	;
+  //获得陀螺仪数据 
+  g_ret=MPU_Get_Gyroscope(&gx, &gy, &gz);		//得到陀螺仪数据
 	accel_x = ax;//x轴加速度值暂存
 	accel_y = ay;//y轴加速度值暂存
 	accel_z = az;//z轴加速度值暂存
@@ -45,23 +46,27 @@ void Angle_Cal(void)
 	gyro_y  = gy;//y轴陀螺仪值暂存
 	gyro_z  = gz;//z轴陀螺仪值暂存
 	
-	//2.角加速度原始值处理过程	
-	//加速度传感器配置寄存器0X1C内写入0x01,设置范围为±2g。换算关系：2^16/4 = 16384LSB/g
-	if(accel_x<32764) accx=accel_x/16384.0;//计算x轴加速度
-	else              accx=1-(accel_x-49152)/16384.0;
-	if(accel_y<32764) accy=accel_y/16384.0;//计算y轴加速度
-	else              accy=1-(accel_y-49152)/16384.0;
-	if(accel_z<32764) accz=accel_z/16384.0;//计算z轴加速度
-	else              accz=(accel_z-49152)/16384.0;
-	//加速度反正切公式计算三个轴和水平面坐标系之间的夹角
-	pitch_raw=(atan(accy/accz))*180/3.14;
-	roll_raw=(atan(accx/accz))*180/3.14;
-	//判断计算后角度的正负号											
-	if(accel_x<32764) roll_raw = +roll_raw;
-	if(accel_x>32764) roll_raw = -roll_raw;
-	if(accel_y<32764) pitch_raw = +pitch_raw;
-	if(accel_y>32764) pitch_raw = -pitch_raw;
-	
+//	//2.角加速度原始值处理过程	
+//	//加速度传感器配置寄存器0X1C内写入0x01,设置范围为±2g。换算关系：2^16/4 = 16384LSB/g
+//	if(accel_x<32764) accx=accel_x/16384.0;//计算x轴加速度
+//	else              accx=1-(accel_x-49152)/16384.0;
+//	if(accel_y<32764) accy=accel_y/16384.0;//计算y轴加速度
+//	else              accy=1-(accel_y-49152)/16384.0;
+//	if(accel_z<32764) accz=accel_z/16384.0;//计算z轴加速度
+//	else              accz=(accel_z-49152)/16384.0;
+//	//加速度反正切公式计算三个轴和水平面坐标系之间的夹角
+//	acctemp=sqrt(accx*accx+accy*accy);
+//	pitch_raw=(atan(accy/accz))*180/3.14;
+//	roll_raw=(atan(accx/accz))*180/3.14;
+//  yaw_raw=(atan(acctemp/accz))*180/3.14;
+//	//判断计算后角度的正负号											
+//	if(accel_x<32764) roll_raw = +roll_raw;
+//	if(accel_x>32764) roll_raw = -roll_raw;
+//	if(accel_y<32764) pitch_raw = +pitch_raw;
+//	if(accel_y>32764) pitch_raw = -pitch_raw;
+//	if(accel_z<32764) yaw_raw = +yaw_raw;
+//	if(accel_z>32764) yaw_raw = -yaw_raw;
+	while(mpu_dmp_get_data(&pitch_raw, &roll_raw, &yaw_raw));	
 	//3.角速度原始值处理过程
 	//陀螺仪配置寄存器0X1B内写入0x18，设置范围为±2000deg/s。换算关系：2^16/4000=16.4LSB/(°/S)
 	////计算角速度
@@ -73,8 +78,9 @@ void Angle_Cal(void)
 	if(gyro_z>32768) gyro_z=+(65535-gyro_z)/16.4;
 
 	//4.调用卡尔曼函数
-	Kalman_Cal_Pitch(pitch_raw,gyro_x);  //卡尔曼滤波计算X倾角
-	Kalman_Cal_Roll(roll_raw,gyro_y);  //卡尔曼滤波计算Y倾角															  
+	Kalman_Cal_Pitch(pitch_raw,gyro_x);  //卡尔曼滤波计算pitch
+	Kalman_Cal_Roll(roll_raw,gyro_y);  //卡尔曼滤波计算roll
+	Kalman_Cal_Yaw(yaw_raw,gyro_z); //卡尔曼滤波计算yaw
 
 
 }
@@ -229,4 +235,22 @@ void Kalman_Cal_Roll(float acc,float gyro) //卡尔曼滤波roll轴计算
 	PP[1][1] = PP[1][1] - K_1 * PP[0][1];
 }
 
-
+void Kalman_Cal_Yaw(float acc,float gyro) //卡尔曼滤波yaw轴计算				
+{
+	static float Q_bias;	//Q_bias:陀螺仪的偏差  Angle_err:角度偏量 
+	static float K_0, K_1;	//卡尔曼增益  K_0:用于计算最优估计值  K_1:用于计算最优估计值的偏差 t_0/1:中间变量
+	static float PP[2][2] = { { 1, 0 },{ 0, 1 } };//过程协方差矩阵P，初始值为单位阵
+	roll_kalman += (gyro - Q_bias) * dt; //状态方程,角度值等于上次最优角度加角速度减零漂后积分
+	PP[0][0] = PP[0][0] + Q_angle - (PP[0][1] + PP[1][0])*dt;
+	PP[0][1] = PP[0][1] - PP[1][1]*dt;
+	PP[1][0] = PP[1][0] - PP[1][1]*dt;
+	PP[1][1] = PP[1][1] + Q_gyro;
+	K_0 = PP[0][0] / (PP[0][0] + R_angle);
+	K_1 = PP[1][0] / (PP[0][0] + R_angle);
+	yaw_kalman = yaw_kalman + K_0 * (acc - yaw_kalman);
+	Q_bias = Q_bias + K_1 * (acc - yaw_kalman);
+	PP[0][0] = PP[0][0] - K_0 * PP[0][0];
+	PP[0][1] = PP[0][1] - K_0 * PP[0][1];
+	PP[1][0] = PP[1][0] - K_1 * PP[0][0];
+	PP[1][1] = PP[1][1] - K_1 * PP[0][1];
+}

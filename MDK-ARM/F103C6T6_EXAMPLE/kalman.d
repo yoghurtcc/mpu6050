@@ -33,3 +33,5 @@ f103c6t6_example\kalman.o: D:\code tools\MDK5\ARM\ARMCC\Bin\..\include\math.h
 f103c6t6_example\kalman.o: ..\BSP\mpu6050.h
 f103c6t6_example\kalman.o: ..\BSP\IIC.h
 f103c6t6_example\kalman.o: D:\code tools\MDK5\ARM\ARMCC\Bin\..\include\inttypes.h
+f103c6t6_example\kalman.o: ..\BSP\inv_mpu.h
+f103c6t6_example\kalman.o: ..\BSP\inv_mpu_dmp_motion_driver.h

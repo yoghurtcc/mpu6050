@@ -36,5 +36,6 @@ f103c6t6_example\inv_mpu.o: ..\BSP\inv_mpu_dmp_motion_driver.h
 f103c6t6_example\inv_mpu.o: ..\BSP\mpu6050.h
 f103c6t6_example\inv_mpu.o: ..\BSP\IIC.h
 f103c6t6_example\inv_mpu.o: D:\code tools\MDK5\ARM\ARMCC\Bin\..\include\inttypes.h
-f103c6t6_example\inv_mpu.o: ../Core/Inc/usart.h
+f103c6t6_example\inv_mpu.o: ..\BSP\kalman.h
 f103c6t6_example\inv_mpu.o: ../Core/Inc/main.h
+f103c6t6_example\inv_mpu.o: ../Core/Inc/usart.h

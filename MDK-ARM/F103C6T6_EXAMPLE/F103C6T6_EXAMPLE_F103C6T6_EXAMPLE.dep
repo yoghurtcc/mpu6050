@@ -1,6 +1,6 @@
 Dependencies for Project 'F103C6T6_EXAMPLE', Target 'F103C6T6_EXAMPLE': (DO NOT MODIFY !)
 F (startup_stm32f103x6.s)(0x633ACA89)(--cpu Cortex-M3 -g --apcs=interwork --pd "__MICROLIB SETA 1"-I "D:\code lib\stm32_test\F103C6T6_EXAMPLE\mpu6050\MDK-ARM\RTE"-I "D:\code tools\MDK5\MDK5pack\ARM\CMSIS\4.2.0\CMSIS\Include"-I "D:\code tools\MDK5\MDK5pack\Keil\STM32F1xx_DFP\2.2.0"--pd "__UVISION_VERSION SETA 514" --pd "_RTE_ SETA 1" --pd "STM32F10X_LD SETA 1"--list startup_stm32f103x6.lst --xref -o f103c6t6_example\startup_stm32f103x6.o --depend f103c6t6_example\startup_stm32f103x6.d)
-F (../Core/Src/main.c)(0x633AE10D)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I..\BSP-I "D:\code lib\stm32_test\F103C6T6_EXAMPLE\mpu6050\MDK-ARM\RTE"-I "D:\code tools\MDK5\MDK5pack\ARM\CMSIS\4.2.0\CMSIS\Include"-I "D:\code tools\MDK5\MDK5pack\Keil\STM32F1xx_DFP\2.2.0"-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_LD -DUSE_HAL_DRIVER -DSTM32F103x6-o f103c6t6_example\main.o --omf_browse f103c6t6_example\main.crf --depend f103c6t6_example\main.d)
+F (../Core/Src/main.c)(0x633D1B78)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I..\BSP-I "D:\code lib\stm32_test\F103C6T6_EXAMPLE\mpu6050\MDK-ARM\RTE"-I "D:\code tools\MDK5\MDK5pack\ARM\CMSIS\4.2.0\CMSIS\Include"-I "D:\code tools\MDK5\MDK5pack\Keil\STM32F1xx_DFP\2.2.0"-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_LD -DUSE_HAL_DRIVER -DSTM32F103x6-o f103c6t6_example\main.o --omf_browse f103c6t6_example\main.crf --depend f103c6t6_example\main.d)
 I (../Core/Inc/main.h)(0x63355299)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x6331124A)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x633ACA87)
@@ -33,11 +33,13 @@ I (../Core/Inc/tim.h)(0x633580CD)
 I (../Core/Inc/usart.h)(0x633ACA87)
 I (../Core/Inc/gpio.h)(0x63355299)
 I (D:\code tools\MDK5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (..\BSP\mpu6050.h)(0x633D1B1E)
 I (..\BSP\IIC.h)(0x5F281932)
 I (D:\code tools\MDK5\ARM\ARMCC\include\inttypes.h)(0x5475F2FA)
-I (..\BSP\mpu6050.h)(0x5F283258)
 I (..\BSP\inv_mpu.h)(0x5F283184)
 I (..\BSP\inv_mpu_dmp_motion_driver.h)(0x50CA9A0E)
+I (..\BSP\kalman.h)(0x633D0C2C)
+I (D:\code tools\MDK5\ARM\ARMCC\include\math.h)(0x5475F2FE)
 F (../Core/Src/gpio.c)(0x633ACA86)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I..\BSP-I "D:\code lib\stm32_test\F103C6T6_EXAMPLE\mpu6050\MDK-ARM\RTE"-I "D:\code tools\MDK5\MDK5pack\ARM\CMSIS\4.2.0\CMSIS\Include"-I "D:\code tools\MDK5\MDK5pack\Keil\STM32F1xx_DFP\2.2.0"-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_LD -DUSE_HAL_DRIVER -DSTM32F103x6-o f103c6t6_example\gpio.o --omf_browse f103c6t6_example\gpio.crf --depend f103c6t6_example\gpio.d)
 I (../Core/Inc/gpio.h)(0x63355299)
 I (../Core/Inc/main.h)(0x63355299)
@@ -637,7 +639,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x6331124A)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x6331124A)
 I (..\BSP\IIC.h)(0x5F281932)
 I (D:\code tools\MDK5\ARM\ARMCC\include\inttypes.h)(0x5475F2FA)
-F (..\BSP\mpu6050.c)(0x633ACFF1)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I..\BSP-I "D:\code lib\stm32_test\F103C6T6_EXAMPLE\mpu6050\MDK-ARM\RTE"-I "D:\code tools\MDK5\MDK5pack\ARM\CMSIS\4.2.0\CMSIS\Include"-I "D:\code tools\MDK5\MDK5pack\Keil\STM32F1xx_DFP\2.2.0"-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_LD -DUSE_HAL_DRIVER -DSTM32F103x6-o f103c6t6_example\mpu6050.o --omf_browse f103c6t6_example\mpu6050.crf --depend f103c6t6_example\mpu6050.d)
+F (..\BSP\mpu6050.c)(0x633D1B78)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I..\BSP-I "D:\code lib\stm32_test\F103C6T6_EXAMPLE\mpu6050\MDK-ARM\RTE"-I "D:\code tools\MDK5\MDK5pack\ARM\CMSIS\4.2.0\CMSIS\Include"-I "D:\code tools\MDK5\MDK5pack\Keil\STM32F1xx_DFP\2.2.0"-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_LD -DUSE_HAL_DRIVER -DSTM32F103x6-o f103c6t6_example\mpu6050.o --omf_browse f103c6t6_example\mpu6050.crf --depend f103c6t6_example\mpu6050.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x6331124A)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x633ACA87)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x6331124A)
@@ -665,11 +667,16 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x6331124A)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x6331124A)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x6331124A)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x6331124A)
-I (..\BSP\mpu6050.h)(0x5F283258)
+I (..\BSP\mpu6050.h)(0x633D1B1E)
 I (..\BSP\IIC.h)(0x5F281932)
 I (D:\code tools\MDK5\ARM\ARMCC\include\inttypes.h)(0x5475F2FA)
-F (..\BSP\kalman.c)(0x633CFE25)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I..\BSP-I "D:\code lib\stm32_test\F103C6T6_EXAMPLE\mpu6050\MDK-ARM\RTE"-I "D:\code tools\MDK5\MDK5pack\ARM\CMSIS\4.2.0\CMSIS\Include"-I "D:\code tools\MDK5\MDK5pack\Keil\STM32F1xx_DFP\2.2.0"-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_LD -DUSE_HAL_DRIVER -DSTM32F103x6-o f103c6t6_example\kalman.o --omf_browse f103c6t6_example\kalman.crf --depend f103c6t6_example\kalman.d)
-I (..\BSP\kalman.h)(0x633CFE25)
+I (..\BSP\inv_mpu.h)(0x5F283184)
+I (..\BSP\inv_mpu_dmp_motion_driver.h)(0x50CA9A0E)
+I (..\BSP\kalman.h)(0x633D0C2C)
+I (../Core/Inc/main.h)(0x63355299)
+I (D:\code tools\MDK5\ARM\ARMCC\include\math.h)(0x5475F2FE)
+F (..\BSP\kalman.c)(0x633D1A41)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I..\BSP-I "D:\code lib\stm32_test\F103C6T6_EXAMPLE\mpu6050\MDK-ARM\RTE"-I "D:\code tools\MDK5\MDK5pack\ARM\CMSIS\4.2.0\CMSIS\Include"-I "D:\code tools\MDK5\MDK5pack\Keil\STM32F1xx_DFP\2.2.0"-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_LD -DUSE_HAL_DRIVER -DSTM32F103x6-o f103c6t6_example\kalman.o --omf_browse f103c6t6_example\kalman.crf --depend f103c6t6_example\kalman.d)
+I (..\BSP\kalman.h)(0x633D0C2C)
 I (../Core/Inc/main.h)(0x63355299)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x6331124A)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x633ACA87)
@@ -699,10 +706,12 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x6331124A)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x6331124A)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x6331124A)
 I (D:\code tools\MDK5\ARM\ARMCC\include\math.h)(0x5475F2FE)
-I (..\BSP\mpu6050.h)(0x5F283258)
+I (..\BSP\mpu6050.h)(0x633D1B1E)
 I (..\BSP\IIC.h)(0x5F281932)
 I (D:\code tools\MDK5\ARM\ARMCC\include\inttypes.h)(0x5475F2FA)
-F (..\BSP\inv_mpu.c)(0x633ADFF3)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I..\BSP-I "D:\code lib\stm32_test\F103C6T6_EXAMPLE\mpu6050\MDK-ARM\RTE"-I "D:\code tools\MDK5\MDK5pack\ARM\CMSIS\4.2.0\CMSIS\Include"-I "D:\code tools\MDK5\MDK5pack\Keil\STM32F1xx_DFP\2.2.0"-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_LD -DUSE_HAL_DRIVER -DSTM32F103x6-o f103c6t6_example\inv_mpu.o --omf_browse f103c6t6_example\inv_mpu.crf --depend f103c6t6_example\inv_mpu.d)
+I (..\BSP\inv_mpu.h)(0x5F283184)
+I (..\BSP\inv_mpu_dmp_motion_driver.h)(0x50CA9A0E)
+F (..\BSP\inv_mpu.c)(0x62342B2C)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I..\BSP-I "D:\code lib\stm32_test\F103C6T6_EXAMPLE\mpu6050\MDK-ARM\RTE"-I "D:\code tools\MDK5\MDK5pack\ARM\CMSIS\4.2.0\CMSIS\Include"-I "D:\code tools\MDK5\MDK5pack\Keil\STM32F1xx_DFP\2.2.0"-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_LD -DUSE_HAL_DRIVER -DSTM32F103x6-o f103c6t6_example\inv_mpu.o --omf_browse f103c6t6_example\inv_mpu.crf --depend f103c6t6_example\inv_mpu.d)
 I (D:\code tools\MDK5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (D:\code tools\MDK5\ARM\ARMCC\include\stdint.h)(0x5475F300)
 I (D:\code tools\MDK5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
@@ -736,11 +745,12 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x6331124A)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x6331124A)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x6331124A)
 I (..\BSP\inv_mpu_dmp_motion_driver.h)(0x50CA9A0E)
-I (..\BSP\mpu6050.h)(0x5F283258)
+I (..\BSP\mpu6050.h)(0x633D1B1E)
 I (..\BSP\IIC.h)(0x5F281932)
 I (D:\code tools\MDK5\ARM\ARMCC\include\inttypes.h)(0x5475F2FA)
-I (../Core/Inc/usart.h)(0x633ACA87)
+I (..\BSP\kalman.h)(0x633D0C2C)
 I (../Core/Inc/main.h)(0x63355299)
+I (../Core/Inc/usart.h)(0x633ACA87)
 F (..\BSP\inv_mpu_dmp_motion_driver.c)(0x5F283184)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I..\BSP-I "D:\code lib\stm32_test\F103C6T6_EXAMPLE\mpu6050\MDK-ARM\RTE"-I "D:\code tools\MDK5\MDK5pack\ARM\CMSIS\4.2.0\CMSIS\Include"-I "D:\code tools\MDK5\MDK5pack\Keil\STM32F1xx_DFP\2.2.0"-D__UVISION_VERSION="514" -D_RTE_ -DSTM32F10X_LD -DUSE_HAL_DRIVER -DSTM32F103x6-o f103c6t6_example\inv_mpu_dmp_motion_driver.o --omf_browse f103c6t6_example\inv_mpu_dmp_motion_driver.crf --depend f103c6t6_example\inv_mpu_dmp_motion_driver.d)
 I (D:\code tools\MDK5\ARM\ARMCC\include\stdio.h)(0x5475F300)
 I (D:\code tools\MDK5\ARM\ARMCC\include\stdint.h)(0x5475F300)

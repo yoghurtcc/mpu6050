@@ -25,18 +25,13 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
-#include "IIC.h"
 #include "mpu6050.h"
-#include "inv_mpu.h"
-#include "inv_mpu_dmp_motion_driver.h"
+
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
- float pitch,roll,yaw; 		    //欧拉角
-    short aacx,aacy,aacz;			//加速度传感器原始数据
-    short gyrox,gyroy,gyroz;		//陀螺仪原始数据
-    float temp;					    //温度
 
 /* USER CODE END PTD */
 
@@ -107,18 +102,15 @@ int main(void)
 	HAL_TIM_Base_Start_IT(&htim1);
 	HAL_TIM_Base_Start_IT(&htim2);
 	MPU_Init();			//MPU6050初始化
-	mpu_dmp_init();		//dmp初始化
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-				HAL_Delay(500);
-				while(mpu_dmp_get_data(&pitch, &roll, &yaw)){};	//必须要用while等待，才能读取成功
-        MPU_Get_Accelerometer(&aacx,&aacy, &aacz);		//得到加速度传感器数据
-        MPU_Get_Gyroscope(&gyrox, &gyroy, &gyroz);		//得到陀螺仪数据
-        temp=MPU_Get_Temperature();						//得到温度信息
+				HAL_Delay(50);
+				Angle_Cal();
 
     /* USER CODE END WHILE */
 

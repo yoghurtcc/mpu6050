@@ -32,8 +32,10 @@ f103c6t6_example\main.o: ../Core/Inc/tim.h
 f103c6t6_example\main.o: ../Core/Inc/usart.h
 f103c6t6_example\main.o: ../Core/Inc/gpio.h
 f103c6t6_example\main.o: D:\code tools\MDK5\ARM\ARMCC\Bin\..\include\stdio.h
+f103c6t6_example\main.o: ..\BSP\mpu6050.h
 f103c6t6_example\main.o: ..\BSP\IIC.h
 f103c6t6_example\main.o: D:\code tools\MDK5\ARM\ARMCC\Bin\..\include\inttypes.h
-f103c6t6_example\main.o: ..\BSP\mpu6050.h
 f103c6t6_example\main.o: ..\BSP\inv_mpu.h
 f103c6t6_example\main.o: ..\BSP\inv_mpu_dmp_motion_driver.h
+f103c6t6_example\main.o: ..\BSP\kalman.h
+f103c6t6_example\main.o: D:\code tools\MDK5\ARM\ARMCC\Bin\..\include\math.h

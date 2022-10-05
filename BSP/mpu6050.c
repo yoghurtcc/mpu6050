@@ -23,7 +23,8 @@ uint8_t MPU_Init(void)
         MPU_Write_Byte(MPU_PWR_MGMT2_REG,0X00);	//加速度与陀螺仪都工作
         MPU_Set_Rate(50);						//设置采样率为50Hz
     } else return 1;
-    return 0;
+    mpu_dmp_init();		//dmp初始化
+		return 0;
 }
 //设置MPU6050陀螺仪传感器满量程范围
 //fsr:0,±250dps;1,±500dps;2,±1000dps;3,±2000dps
