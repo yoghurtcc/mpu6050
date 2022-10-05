@@ -440,11 +440,12 @@ ARM Macro Assembler    Page 7
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=f103c6t6_example\startup_stm32f103x6.d -of103c6t6_example\startup_
-stm32f103x6.o -I"D:\code lib\stm32_test\F103C6T6_EXAMPLE\mpu6050\MDK-ARM\RTE" -
-I"D:\code tools\MDK5\MDK5pack\ARM\CMSIS\4.2.0\CMSIS\Include" -I"D:\code tools\M
-DK5\MDK5pack\Keil\STM32F1xx_DFP\2.2.0" --predefine="__MICROLIB SETA 1" --predef
-ine="__UVISION_VERSION SETA 514" --predefine="_RTE_ SETA 1" --predefine="STM32F
-10X_LD SETA 1" --list=startup_stm32f103x6.lst startup_stm32f103x6.s
+stm32f103x6.o -I..\Core\Inc -I"D:\code lib\stm32_test\F103C6T6_EXAMPLE\mpu6050\
+MDK-ARM\RTE" -I"D:\code tools\MDK5\MDK5pack\ARM\CMSIS\4.2.0\CMSIS\Include" -I"D
+:\code tools\MDK5\MDK5pack\Keil\STM32F1xx_DFP\2.2.0" --predefine="__MICROLIB SE
+TA 1" --predefine="__UVISION_VERSION SETA 514" --predefine="_RTE_ SETA 1" --pre
+define="STM32F10X_LD SETA 1" --list=startup_stm32f103x6.lst startup_stm32f103x6
+.s
 
 
 
