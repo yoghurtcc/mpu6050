@@ -44,9 +44,9 @@ Section Cross References
     freertos.o(i.MX_FREERTOS_Init) refers to freertos.o(.data) for .data
     freertos.o(i.MX_FREERTOS_Init) refers to freertos.o(i.StartMPU6050Task) for StartMPU6050Task
     freertos.o(i.StartDefaultTask) refers to cmsis_os2.o(i.osDelay) for osDelay
+    freertos.o(i.StartDefaultTask) refers to stm32f1xx_hal_gpio.o(i.HAL_GPIO_TogglePin) for HAL_GPIO_TogglePin
     freertos.o(i.StartMPU6050Task) refers to cmsis_os2.o(i.osDelay) for osDelay
     freertos.o(i.StartMPU6050Task) refers to kalman.o(i.Angle_Cal) for Angle_Cal
-    freertos.o(i.StartMPU6050Task) refers to stm32f1xx_hal_gpio.o(i.HAL_GPIO_TogglePin) for HAL_GPIO_TogglePin
     freertos.o(.constdata) refers to freertos.o(.conststring) for .conststring
     tim.o(i.HAL_TIM_Encoder_MspDeInit) refers to stm32f1xx_hal_gpio.o(i.HAL_GPIO_DeInit) for HAL_GPIO_DeInit
     tim.o(i.HAL_TIM_Encoder_MspDeInit) refers to stm32f1xx_hal_cortex.o(i.HAL_NVIC_DisableIRQ) for HAL_NVIC_DisableIRQ
@@ -2696,7 +2696,7 @@ Image Symbol Table
     i.MemManage_Handler                      0x08002638   Section        0  stm32f1xx_it.o(i.MemManage_Handler)
     i.NMI_Handler                            0x0800263a   Section        0  stm32f1xx_it.o(i.NMI_Handler)
     i.StartDefaultTask                       0x0800263c   Section        0  freertos.o(i.StartDefaultTask)
-    i.StartMPU6050Task                       0x08002644   Section        0  freertos.o(i.StartMPU6050Task)
+    i.StartMPU6050Task                       0x0800265c   Section        0  freertos.o(i.StartMPU6050Task)
     i.SysTick_Handler                        0x08002668   Section        0  port.o(i.SysTick_Handler)
     i.SystemClock_Config                     0x08002694   Section        0  main.o(i.SystemClock_Config)
     i.SystemInit                             0x080026f2   Section        0  system_stm32f1xx.o(i.SystemInit)
@@ -3217,8 +3217,8 @@ Image Symbol Table
     MX_USART1_UART_Init                      0x08002601   Thumb Code    48  usart.o(i.MX_USART1_UART_Init)
     MemManage_Handler                        0x08002639   Thumb Code     2  stm32f1xx_it.o(i.MemManage_Handler)
     NMI_Handler                              0x0800263b   Thumb Code     2  stm32f1xx_it.o(i.NMI_Handler)
-    StartDefaultTask                         0x0800263d   Thumb Code     8  freertos.o(i.StartDefaultTask)
-    StartMPU6050Task                         0x08002645   Thumb Code    30  freertos.o(i.StartMPU6050Task)
+    StartDefaultTask                         0x0800263d   Thumb Code    26  freertos.o(i.StartDefaultTask)
+    StartMPU6050Task                         0x0800265d   Thumb Code    12  freertos.o(i.StartMPU6050Task)
     SysTick_Handler                          0x08002669   Thumb Code    38  port.o(i.SysTick_Handler)
     SystemClock_Config                       0x08002695   Thumb Code    94  main.o(i.SystemClock_Config)
     SystemInit                               0x080026f3   Thumb Code     2  system_stm32f1xx.o(i.SystemInit)
@@ -3522,8 +3522,8 @@ Memory Map of the image
     0x08002600   0x00000038   Code   RO          355    i.MX_USART1_UART_Init  usart.o
     0x08002638   0x00000002   Code   RO          398    i.MemManage_Handler  stm32f1xx_it.o
     0x0800263a   0x00000002   Code   RO          399    i.NMI_Handler       stm32f1xx_it.o
-    0x0800263c   0x00000008   Code   RO          233    i.StartDefaultTask  freertos.o
-    0x08002644   0x00000024   Code   RO          234    i.StartMPU6050Task  freertos.o
+    0x0800263c   0x00000020   Code   RO          233    i.StartDefaultTask  freertos.o
+    0x0800265c   0x0000000c   Code   RO          234    i.StartMPU6050Task  freertos.o
     0x08002668   0x0000002c   Code   RO         5218    i.SysTick_Handler   port.o
     0x08002694   0x0000005e   Code   RO           15    i.SystemClock_Config  main.o
     0x080026f2   0x00000002   Code   RO         2866    i.SystemInit        system_stm32f1xx.o

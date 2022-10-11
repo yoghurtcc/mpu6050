@@ -22,11 +22,10 @@
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
-#include "mpu6050.h"
-
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "mpu6050.h"
 
 /* USER CODE END Includes */
 
@@ -65,10 +64,10 @@ const osThreadAttr_t MPU6050Task_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal1,
 };
+void StartMPU6050Task(void *argument);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
-void StartMPU6050Task(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -126,7 +125,8 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+    osDelay(1000);
+		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
   }
   /* USER CODE END StartDefaultTask */
 }
@@ -137,9 +137,9 @@ void StartMPU6050Task(void *argument)
 {
 	for(;;) 
 	{
-		osDelay(500);
+		osDelay(50);
 		Angle_Cal();
-	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+
 	}
 
 }
